@@ -4,27 +4,11 @@ const bodyParser = require('body-parser');
 const mongoose=require("./mongoose")
 require('dotenv').config()
 
-const Pregunta=require("./models/Pregunta")
-const Bloque=require("./models/Bloque")
 
 
 
-const newBloque = new Bloque({numero:1, descripcion:"Descripcion de prueba"});
-newBloque.save()
 
-const newPregunta = new Pregunta({
-    numero:1,
-    descripcion:"descripcion de prueba",
-    respuesta: {
-        a: "Respueta a",
-        b: "Respuesta b",
-        c: "Respuesta c",
-        d: "Respuseta d"
-    }
 
-})
-
-newPregunta.save()
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -39,10 +23,11 @@ app.set("port",process.env.PORT || 3001);
 
 // import routes
 const authRoutes = require('./routes/auth');
+const provincias = require('./routes/provincias')
 
 // route middlewares
 app.use('/api/user', authRoutes);
-
+app.use('/api/provincias', provincias);
 
 
 
