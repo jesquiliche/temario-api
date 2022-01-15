@@ -28,11 +28,11 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
-    poblacion: {
+    provincia: {
         type:String,
         required:true
     },
-    region: {
+    poblacion: {
         type:String,
         required:true
     },
