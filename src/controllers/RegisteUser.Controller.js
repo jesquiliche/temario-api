@@ -2,6 +2,7 @@ const User=require("../models/User");
 const Joi = require('@hapi/joi');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const encriptarContrasena=require("../midleware/encriptar-contrasena")
 
 const schemaRegister = Joi.object({
     nombre: Joi.string().required(),
@@ -11,13 +12,13 @@ const schemaRegister = Joi.object({
     telefono:Joi.string().min(3).required(),
     direccion:Joi.string().min(5).required(),
     poblacion:Joi.string().min(3).required(),
-    region:Joi.string().min(3).required(),
-    pais:Joi.string().min(3).required()
+    provincia:Joi.string().min(2).required()
+
 })
 
 const registerUser= async (req, res) => {
 // validate user
-    console.log(req.body);
+
     const { error } = schemaRegister.validate(req.body)
     
     if (error) {
@@ -32,14 +33,12 @@ const registerUser= async (req, res) => {
     }
     
     // hash contraseña
-    const salt = await bcrypt.genSalt(10);
-    const password = await bcrypt.hash(req.body.password, salt);
-    req.body.password=password
+    
+    req.body.password=await encriptarContrasena(req.body.password);
     const user = new User(req.body);
 
     try {
-        console.log(req.body)
-        
+                
         const savedUser = await user.save();
         res.json({
             error: null,
