@@ -5,6 +5,7 @@ const getUser=require("../controllers/GetUser.controller");
 const FindUser=require("../controllers/FindUser.controller");
 const UpdateUser=require("../controllers/UpdateUser.Controller");
 const DeleteUser=require("../controllers/DeleteUser.controller");
+const getUserFilter = require('../controllers/GetUserFilter.controller');
 
 
 router.post('/register', registerUser);
@@ -12,6 +13,7 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 router.get("/",getUser);
+router.post("/filter",getUserFilter);
 
 router.get("/:id",FindUser);
 router.put("/:id",UpdateUser)
