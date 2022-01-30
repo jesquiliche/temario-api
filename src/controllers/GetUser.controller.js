@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const getUser= async (req, res) => {
     
     const user = await User.find();
-    return res.json(user);
+    return res.code(200).json(user);
       
 }
 

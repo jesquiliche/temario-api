@@ -1,7 +1,9 @@
 const User=require("../models/User");
 const encriptarContrasena=require("../midleware/encriptar-contrasena");
+const verifyToken = require("../midleware/validate-token");
 
 const UpdateUser = async (req,res) => {
+    verifyToken();
     const {id}=req.params
 
     // hash contraseña
@@ -9,7 +11,7 @@ const UpdateUser = async (req,res) => {
     req.body.password=await encriptarContrasena(req.body.password);
 
     const user = await User.findByIdAndUpdate(id,req.body,{ new: true })
-    return res.json(user);
+    return res.status(200).json(user);
 }
 
 module.exports=UpdateUser;

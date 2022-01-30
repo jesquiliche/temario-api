@@ -1,9 +1,11 @@
+const verifyToken = require("../midleware/validate-token");
 const User=require("../models/User");
 
 const DeleteUser = async (req,res) => {
+    verifyToken()
     const {id}=req.params;
     const user = await User.findByIdAndRemove(id)
-    res.send("Borrado sadisfactoriamente")
+    res.status(204).json({message:"Borrado sadisfactoriamente"})
 }
 
 module.exports=DeleteUser;
