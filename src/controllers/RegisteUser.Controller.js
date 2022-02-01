@@ -40,7 +40,7 @@ const registerUser= async (req, res) => {
     try {
                 
         const savedUser = await user.save();
-        res.json({
+        res.status(201).json({
             error: null,
             data: savedUser
         })

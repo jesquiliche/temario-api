@@ -3,7 +3,7 @@ const encriptarContrasena=require("../midleware/encriptar-contrasena");
 const verifyToken = require("../midleware/validate-token");
 
 const UpdateUser = async (req,res) => {
-    verifyToken();
+
     const {id}=req.params
 
     // hash contraseña

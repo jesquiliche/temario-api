@@ -12,7 +12,7 @@ router.post('/register',verifyToken, registerUser);
 
 router.post('/login', loginUser);
 
-router.get("/",getUser);
+router.get("/",verifyToken,getUser);
 router.get("/filter",verifyToken,getUserFilter);
 
 router.get("/:id",verifyToken,FindUser);
