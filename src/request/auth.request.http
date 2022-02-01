@@ -1,0 +1,30 @@
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJKZXPDunMiLCJpZCI6IjYxZWJhZGQzYTM5NjdhZDdkNTFmMzEwNyIsImlhdCI6MTY0MzcwMjEyOSwiZXhwIjoxNjQzNzA1NzI5fQ.aEK14aIfUbUqnVv2WEc7sKuUWC_oJ-uVFnbfk-xqvPM
+POST http://localhost:3001/api/user/login
+Content-Type: application/json
+
+{
+    "email":"jesquiliche@gmail.com",
+    "password":"3912481B"
+}
+
+###
+# Ruta para obtener todos los usuarios
+
+GET http://localhost:3001/api/user
+Content-Type: application/json
+auth-token: {{{token}}}
+
+###
+
+GET http://localhost:3001/api/user/filter
+Content-Type: application/json
+auth-token: {{{token}}}
+
+{
+    "nombre":"Jesus",
+    "email":"",
+    "apellidos":""
+  
+}
+
+

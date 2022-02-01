@@ -6,18 +6,18 @@ const FindUser=require("../controllers/FindUser.controller");
 const UpdateUser=require("../controllers/UpdateUser.Controller");
 const DeleteUser=require("../controllers/DeleteUser.controller");
 const getUserFilter = require('../controllers/GetUserFilter.controller');
+const verifyToken=require('../midleware/validate-token')
 
-
-router.post('/register', registerUser);
+router.post('/register',verifyToken, registerUser);
 
 router.post('/login', loginUser);
 
 router.get("/",getUser);
-router.post("/filter",getUserFilter);
+router.get("/filter",verifyToken,getUserFilter);
 
-router.get("/:id",FindUser);
-router.put("/:id",UpdateUser)
-router.delete("/:id",DeleteUser)
+router.get("/:id",verifyToken,FindUser);
+router.put("/:id",verifyToken,UpdateUser)
+router.delete("/:id",verifyToken,DeleteUser)
    
 
 

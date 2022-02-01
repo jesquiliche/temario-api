@@ -6,7 +6,7 @@ const Municipio = require('../models/Municipio');
 const getMunicipio= async (req, res) => {
     verifyToken()
     const municipios = await Municipio.find();
-    return res.json(municipios);
+    return res.status(200).json(municipios);
       
 }
 

@@ -15,6 +15,7 @@ const schemaLogin = Joi.object({
 const loginUser= async (req, res) => {
     
     //Evitar inyección de dependencias no sql
+    
     req.body=sanitize(req.body);
 
     //Comprobar si el body cumple los requisitos del esquma
