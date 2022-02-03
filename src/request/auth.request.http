@@ -1,4 +1,4 @@
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJKZXPDunMiLCJpZCI6IjYxZWJhZGQzYTM5NjdhZDdkNTFmMzEwNyIsImlhdCI6MTY0Mzc1MTEyNywiZXhwIjoxNjQzNzU0NzI3fQ.w5fXNke440NfVX4eBtbmt8v6Mf9PLBfjOh-g08hbgjU
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub21icmUiOiJKZXPDunMiLCJpZCI6IjYxZWJhZGQzYTM5NjdhZDdkNTFmMzEwNyIsImlhdCI6MTY0Mzg4NjM5NiwiZXhwIjoxNjQzODg5OTk2fQ.8ifwdmyzYrCKGk4h5K2tFKThtIZRKbJsaa__dxOe5vU
 @url=http://localhost:3001
 
 // Hace el login del usaurio y devuevlve el Token correspondiente
@@ -63,8 +63,8 @@ Content-Type: application/json
 auth-token: {{token}}
 
 {
-  "email": "marta@gmail.com",
-  "nombre": "Marta",
+  "email": "carmen@gmail.com",
+  "nombre": "Carmen",
   "password": "123456Z",
   "apellidos": "Gomez",
   "telefono": "6312222",
@@ -111,3 +111,33 @@ auth-token: {{token}}
 GET http://localhost:3001/api/municipios/08
 Content-Type: application/json
 auth-token: {{token}}
+
+
+###
+GET http://localhost:3001/api/bloque
+Content-Type: application/json
+auth-token: {{token}}
+
+
+###
+GET http://localhost:3001/api/bloque/61fba789de6dfca8dfade169
+Content-Type: application/json
+auth-token: {{token}}
+
+
+###
+//Ruta para añadir Blouques
+POST  http://localhost:3001/api/bloque 
+Content-Type: application/json
+auth-token: {{token}}
+
+{
+  "numero":1,
+  "descripcion":"Bloque I. Organización del Estado y Administración electrónica"
+}
+
+###
+DELETE  http://localhost:3001/api/bloque/61fba789de6dfca8dfade169
+Content-Type: application/json
+auth-token: {{token}}
+

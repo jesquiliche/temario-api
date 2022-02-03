@@ -21,12 +21,20 @@ const authRoutes = require('./routes/auth');
 const provincias = require('./routes/provincias')
 const municipios = require('./routes/municipios')
 const municipiosProv=require('./routes/municipios')
+// import routes
+const dashboadRoutes = require('./routes/dashboard');
+const bloqueRoutes=require("./routes/bloque")
 
 // route middlewares
 app.use('/api/user', authRoutes);
 app.use('/api/provincias', provincias);
 app.use('/api/municipios', municipios);
 app.use('/api/municipios/:id', municipiosProv);
+// route middlewares
+app.use('/api/bloque',bloqueRoutes);
+
+
+
 
 
 
@@ -50,15 +58,9 @@ app.use((req, res, next) => {
     });
 });
 
-// import routes
-const dashboadRoutes = require('./routes/dashboard');
-const bloqueRoutes=require("./routes/bloque")
+
 const verifyToken = require('./midleware/validate-token');
 
-// route middlewares
-app.use('/api/bloque',verifyToken, bloqueRoutes);
-
-app.use('/api/dashboard', verifyToken, dashboadRoutes);
 
 
 app.listen(app.get("port"),()=>{

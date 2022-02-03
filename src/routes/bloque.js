@@ -1,14 +1,14 @@
 const router = require('express').Router();
-const jwt = require('jsonwebtoken');
-const registerUser = require("../controllers/RegisteUser.Controller");
-const loginUser=require("../controllers/LoginUser.controller");
-const getBloque = require('../controllers/bloque.controller');
+const {getBloque,addBloque,findBloque,deleteBloque} = require('../controllers/bloque.controller');
 const verifyToken=require('../midleware/validate-token');
 
 
 
 router.get("/",verifyToken,getBloque);
+router.get("/:id",verifyToken,findBloque);
    
+router.post("/",verifyToken,addBloque);
+router.delete("/:id",verifyToken,deleteBloque);
 
 
 
