@@ -13,7 +13,7 @@ router.post('/register',verifyToken, registerUser);
 router.post('/login', loginUser);
 
 router.get("/",verifyToken,getUser);
-router.get("/filter",verifyToken,getUserFilter);
+router.post("/filter",verifyToken,getUserFilter);
 
 router.get("/:id",verifyToken,FindUser);
 router.put("/:id",verifyToken,UpdateUser)

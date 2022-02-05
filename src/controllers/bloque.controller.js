@@ -9,7 +9,7 @@ const getBloque= async (req, res) => {
 }
 
 const addBloque=async(req,res)=> {
-    console.log(req.body)
+
     try{
         const newBloque= new Bloque(req.body);
         await newBloque.save();
