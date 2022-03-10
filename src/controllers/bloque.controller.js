@@ -21,11 +21,11 @@ const addBloque=async(req,res)=> {
 }
 
 const updateBloque=async(req,res)=> {
-    
+    const {id}=req.params;
     try{
         
         const bloque=await Bloque.findByIdAndUpdate(id,req.body,{ new: true });
-        return res.status(200).json(loque);
+        return res.status(200).json(bloque);
     } catch(error){
         res.status(400).json({message: error});
     }
@@ -36,7 +36,7 @@ const updateBloque=async(req,res)=> {
 const findBloque = async (req,res) => {
     const {id}=req.params;
     const  bloque = await Bloque.findById(id,
-        {"_id":0,"__v":0,"createdAt":0,"updatedAt":0 });
+        {"__v":0,"createdAt":0,"updatedAt":0 });
     return res.status(200).json(bloque);
 }
 
@@ -52,5 +52,6 @@ module.exports={
     getBloque,
     addBloque,
     findBloque,
-    deleteBloque
+    deleteBloque,
+    updateBloque
 }

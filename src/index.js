@@ -2,8 +2,10 @@ const express=require('express');
 const app=express();
 const bodyParser = require('body-parser');
 const mongoose=require("./mongoose")
-require('dotenv').config()
-
+require('dotenv').config();
+//Configurar proteccion ataques inyección XSS
+const {xss} = require('express-xss-sanitizer');
+app.use(xss());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -18,21 +20,19 @@ app.set("port",process.env.PORT || 3001);
 
 // import routes
 const authRoutes = require('./routes/auth');
-const provincias = require('./routes/provincias')
-const municipios = require('./routes/municipios')
-const municipiosProv=require('./routes/municipios')
-// import routes
-const dashboadRoutes = require('./routes/dashboard');
+const provinciasRoutes = require('./routes/provincias')
+const municipiosRoutes = require('./routes/municipios')
+const municipiosProvRoutes=require('./routes/municipios')
+const temasRoutes=require('./routes/temas')
 const bloqueRoutes=require("./routes/bloque")
 
 // route middlewares
 app.use('/api/user', authRoutes);
-app.use('/api/provincias', provincias);
-app.use('/api/municipios', municipios);
-app.use('/api/municipios/:id', municipiosProv);
-// route middlewares
+app.use('/api/provincias', provinciasRoutes);
+app.use('/api/municipios', municipiosRoutes);
+app.use('/api/municipios/:id', municipiosProvRoutes);
 app.use('/api/bloque',bloqueRoutes);
-
+app.use('/api/tema',temasRoutes);
 
 
 

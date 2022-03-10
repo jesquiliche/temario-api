@@ -11,6 +11,10 @@ const bloqueSchema = new Schema({
         type: String,
         required: true
     },
+    temas: [{
+        type:Schema.Types.ObjectId,
+        ref:"temas"
+    }]
 },
 { timestamps:true}
 );

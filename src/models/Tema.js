@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bloque=require("../models/Bloque")
 
 const temaSchema = new Schema({
 
@@ -11,8 +12,11 @@ const temaSchema = new Schema({
         type: String,
         required: true
     },
-},
-{ timestamps:true}
+    bloque: [{
+        type: Schema.ObjectId,
+        ref:"Bloque"
+    }]
+}
 );
 
 // Crear el modelo
