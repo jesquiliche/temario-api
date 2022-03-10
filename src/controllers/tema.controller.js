@@ -8,8 +8,9 @@ const getTema= async (req, res) => {
     return res.status(200).json(temas);
 }
 
+//Añadir tema
 const addTema=async(req,res)=> {
-    const {numero,descripcion,bloqueId}=req.body;
+    const {numero,descripcion,bloqueId}=sanitize(req.body);
     
     try{
         const bloque=Bloque.findById(bloqueId);
@@ -26,6 +27,7 @@ const addTema=async(req,res)=> {
 
 }
 
+//Actualizar tema
 const updateTema=async(req,res)=> {
     const {id}=req.params;
     try{
@@ -38,16 +40,17 @@ const updateTema=async(req,res)=> {
 
 }
 
-
+//Buscar tema
 const findTema = async (req,res) => {
-    const {id}=req.params;
+    const {id}=sanitize(req.params);
     const  tema = await Bloque.findById(id,
         {"__v":0,"createdAt":0,"updatedAt":0 });
     return res.status(200).json(bloque);
 }
 
+//Borrar tema
 const deleteTema = async (req,res) => {
-    const {id}=req.params;
+    const {id}=sanitize(req.params);
     const tema = await Bloque.findByIdAndRemove(id)
     res.status(204).json({message:"Borrado sadisfactoriamente"})
 }

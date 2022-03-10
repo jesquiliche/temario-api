@@ -8,10 +8,11 @@ const getBloque= async (req, res) => {
     return res.status(200).json(bloque);
 }
 
+//Añadir Bloque
 const addBloque=async(req,res)=> {
 
     try{
-        const newBloque= new Bloque(req.body);
+        const newBloque= new Bloque(sanitize(req.body));
         await newBloque.save();
         return res.status(201).json(newBloque);
     } catch(error){

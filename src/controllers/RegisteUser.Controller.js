@@ -2,7 +2,8 @@ const User=require("../models/User");
 const Joi = require('@hapi/joi');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const encriptarContrasena=require("../midleware/encriptar-contrasena")
+const encriptarContrasena=require("../midleware/encriptar-contrasena");
+const read = require("body-parser/lib/read");
 
 const schemaRegister = Joi.object({
     nombre: Joi.string().required(),
@@ -17,7 +18,10 @@ const schemaRegister = Joi.object({
 })
 
 const registerUser= async (req, res) => {
-// validate user
+
+    req.body=sanitize(req.body);
+    // validate user
+
 
     const { error } = schemaRegister.validate(req.body)
     

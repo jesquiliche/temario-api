@@ -2,9 +2,10 @@ const User=require("../models/User");
 const encriptarContrasena=require("../midleware/encriptar-contrasena");
 const verifyToken = require("../midleware/validate-token");
 
+//Actualizar usuario
 const UpdateUser = async (req,res) => {
 
-    const {id}=req.params
+    req.body=sanitize(req.body);
 
     // hash contraseña
     
